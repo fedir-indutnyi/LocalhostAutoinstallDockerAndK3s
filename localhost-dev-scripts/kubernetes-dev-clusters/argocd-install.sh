@@ -1,7 +1,10 @@
 #!/bin/bash
+################################################################################################
+# Created by Fedir Indutnyi                                                                    #
+# Note: This script installs and configures ArgoCD.                                            #
+################################################################################################
 
-
-echo "======== Starting to install ArgoCD using Kubectl =================="
+echo "======== Starting to install ArgoCD using Helm =================="
 
 # Define environment variables
 export NODE_NAME="localhost"

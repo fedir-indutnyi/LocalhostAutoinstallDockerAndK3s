@@ -1,5 +1,10 @@
 #!/bin/bash
 # !!!! Need to be run as "sh k3s-native-k3sup.sh" !!!!
+################################################################################################
+# Created by Fedir Indutnyi                                                                    #
+# Note: This script installs and configures k3s.                                               #
+################################################################################################
+
 echo "!!! Important - make sure ending of this file is LF !!!"
 
 echo "Update os"
@@ -9,6 +14,8 @@ echo "======== Starting to install Localhost Development K3s Prerequisites =====
 # Define environment variables
 export NODE_NAME="localhost"
 export LOCALHOST_IP="127.0.0.1"
+export EXTRAARGS=" --k3s-extra-args '--no-deploy traefik'"
+ufw disable
 
 echo "======== Check Environment Variables =================="
 env
@@ -39,8 +46,8 @@ K3S_KUBECONFIG_MODE="644" $K3SUP_CMD --write-kubeconfig-mode 644
 sudo cp k3sup /usr/local/bin/k3sup
 k3sup --help
 echo "======== Running install command =================="
-# k3sup install --local --ip $LOCALHOST_IP --user $USER --k3s-extra-args '--no-deploy traefik'
-k3sup install --local --ip $LOCALHOST_IP --user $USER 
+  k3sup install --local --ip $LOCALHOST_IP --user $USER $EXTRAARGS
+
 # this line is important, it allows changing context
 sudo chmod +rwx /etc/rancher/k3s/k3s.yaml
 echo "======== Installation of k3s finished =================="
